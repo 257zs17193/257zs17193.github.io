@@ -1,10 +1,13 @@
 :root {
-  --theme-color: #00a0a0;       /* 元のテーマカラー */
-  --theme-dark: #007d7d;        /* 濃いめのアクセント */
-  --text-color: #333333;        /* 本文 */
-  --bg-gray: #f4f7f8;           /* 薄いグレー背景（セクション分け用） */
+  --theme-color: #00a0a0;
+  --theme-dark: #007d7d;
+  --text-color: #333333;
+  --bg-gray: #f4f7f8;
   --border-color: #e0e0e0;
   --font-base: 'Noto Sans JP', sans-serif;
+  /* ハンバーグボタン用の色変数を追加 */
+  --hamburg-color: #8b4513; 
+  --hamburg-hover: #a0522d;
 }
 
 * {
@@ -35,7 +38,13 @@ ul {
   margin: 0;
 }
 
-/* レイアウト共通　*/
+/* アイコン調整 */
+.bi {
+  margin-right: 5px;
+  vertical-align: -0.125em;
+}
+
+/* レイアウト共通 */
 .container {
   max-width: 960px;
   margin: 0 auto;
@@ -53,9 +62,8 @@ ul {
 .section-title {
   font-size: 2rem;
   color: var(--text-color);
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   text-align: center;
-  border: none; /* 元の破線を削除 */
 }
 
 .section-lead {
@@ -85,7 +93,6 @@ ul {
   font-weight: bold;
   color: var(--text-color);
   margin: 0;
-  border: none;
 }
 
 .nav-list {
@@ -97,6 +104,8 @@ ul {
   color: #555;
   font-weight: bold;
   font-size: 0.9rem;
+  display: flex;
+  align-items: center;
 }
 
 /* メインビジュアル */
@@ -108,57 +117,64 @@ ul {
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin: 0 0 20px 0;
-  border: none;
-  color: #fff;
+  line-height: 1.3;
 }
 
 .hero-text {
-  font-size: 1.2rem;
-  margin-bottom: 40px;
+  font-size: 1.1rem;
   opacity: 0.9;
 }
 
-/* ボタン */
+/* プロフィール */
+.profile-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.simple-list li {
+  margin-bottom: 10px;
+}
+
+/* ボタン共通スタイル */
 .btn {
   display: inline-block;
-  padding: 12px 30px;
+  padding: 10px 25px;
   border-radius: 4px;
   font-weight: bold;
   text-align: center;
   cursor: pointer;
-  transition: all 0.3s;
+  border: none; /* buttonタグ用にリセット */
+  transition: background-color 0.3s; /* ホバー効果用 */
 }
 
+/* 既存のプライマリボタン */
 .btn-primary {
-  background-color: #fff;
-  color: var(--theme-color);
-}
-.btn-primary:hover {
-  background-color: #f0f0f0;
-}
-
-.btn-outline {
-  border: 2px solid var(--theme-color);
-  color: var(--theme-color);
-  margin: 0 10px;
-}
-.btn-outline:hover {
   background-color: var(--theme-color);
   color: #fff;
 }
-
-/* リスト・カード */
-.simple-list li {
-  margin-bottom: 10px;
-  padding-left: 0;
+.btn-primary:hover {
+  background-color: var(--theme-dark);
 }
 
-.simple-list li:before {
-  content: none; 
+/* 新設：ハンバーグボタンのスタイル */
+.btn-hamburg {
+  background-color: var(--hamburg-color);
+  color: #fff;
+  padding: 8px 16px; /* フッター用に少し小さめに調整 */
+  font-size: 0.9rem;
+}
+.btn-hamburg:hover {
+  background-color: var(--hamburg-hover);
 }
 
+
+/* カードグリッド */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -174,31 +190,38 @@ ul {
 }
 
 .card h3 {
-  border: none;
   margin-top: 0;
   color: var(--text-color);
+  border-bottom: 2px solid var(--theme-color);
+  display: inline-block;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
 }
 
 .link-list li {
   border-bottom: 1px solid #eee;
-  padding: 10px 0;
+  padding: 12px 0;
 }
 .link-list li:last-child {
   border-bottom: none;
 }
-.link-list li:before {
-  content: "▶"; /* シンプルな矢印に変更 */
-  font-size: 0.8em;
-  color: var(--theme-color);
-  margin-right: 8px;
+.link-list a {
+  display: inline-flex;
+  align-items: center;
 }
 
-/* テーブル  */
+/* テーブル (BtoBスタイル) */
+.table-responsive {
+  overflow-x: auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  background: #fff;
+}
+
 .btob-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
-  border: 1px solid var(--border-color);
+  min-width: 600px;
 }
 
 .btob-table th, 
@@ -206,8 +229,6 @@ ul {
   padding: 18px 24px;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
-  border-right: none;
-  border-left: none;
 }
 
 .btob-table th {
@@ -215,6 +236,7 @@ ul {
   color: #444;
   font-weight: bold;
   width: 30%;
+  white-space: nowrap;
   border-right: 1px solid var(--border-color);
 }
 
@@ -223,38 +245,104 @@ ul {
   border-bottom: none;
 }
 
-/* スキルセットをより見やすく */
-.table-responsive {
-  overflow-x: auto; /* スマホで横スクロール */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  border-radius: 8px;
-}
-
-/* History用の調整 */
-.timeline-table th {
-  white-space: nowrap;
-  vertical-align: top;
-}
 .text-small {
-  font-size: 0.9em;
-  color: #777;
+  font-size: 0.85em;
+  color: #666;
+  display: block;
+  margin-top: 4px;
 }
 
-/* コンタクト & フッター */
+/* コンタクト */
 .contact-container {
   text-align: center;
 }
 
-.contact-list {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-}
-
+/* =========================================
+   フッター関連のスタイル
+========================================= */
 .site-footer {
   background-color: #333;
   color: #fff;
-  padding: 20px 0;
-  text-align: center;
+  padding: 15px 0;
   font-size: 0.9rem;
+}
+
+/* フッター内のFlexレイアウト */
+.footer-flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 左右のコンテナ */
+.footer-left,
+.footer-right {
+  flex: 1;
+  display: flex;
+  align-items: center; /* ボタンの上下中央揃え */
+}
+
+/* 右側のコンテナは右寄せ */
+.footer-right {
+  justify-content: flex-end;
+}
+
+/* 中央のテキスト */
+.footer-center {
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* フッターのアイコンボタン（紅茶用） */
+.footer-icon-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: transform 0.1s, opacity 0.3s;
+  color: #fff;
+}
+
+.footer-icon-btn:hover {
+  opacity: 0.8;
+}
+
+.footer-icon-btn:active {
+  transform: scale(0.9);
+}
+
+/* 紅茶アイコンの色 */
+.icon-tea {
+  color: #e6c0a0;
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+  }
+  .nav-list {
+    margin-top: 15px;
+    gap: 15px;
+    font-size: 0.8rem;
+  }
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  .btob-table th, .btob-table td {
+    display: block;
+    width: 100%;
+    border-right: none;
+  }
+  .btob-table th {
+    background-color: var(--bg-gray);
+    border-bottom: none;
+    padding-bottom: 5px;
+  }
+  .btob-table td {
+    padding-top: 5px;
+  }
 }
