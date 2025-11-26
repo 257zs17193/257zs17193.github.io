@@ -6,6 +6,7 @@
     <title>Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
 
@@ -14,10 +15,10 @@
             <h1 class="logo">My Portfolio</h1>
             <nav>
                 <ul class="nav-list">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#works">Works</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about"><i class="bi bi-person-lines-fill"></i> About</a></li>
+                    <li><a href="#skills"><i class="bi bi-tools"></i> Skills</a></li>
+                    <li><a href="#works"><i class="bi bi-briefcase-fill"></i> Works</a></li>
+                    <li><a href="#contact"><i class="bi bi-envelope-fill"></i> Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -39,10 +40,10 @@
             </p>
             
             <div class="profile-card">
-                <h3>Profile</h3>
+                <h3><i class="bi bi-person-badge"></i> Profile</h3>
                 <ul class="simple-list">
-                    <li><strong>所在地:</strong>熊本県→北海道→埼玉県</li>
-                    <li><strong>好きな食べ物:</strong> パインバーグディッシュ</li>
+                    <li><i class="bi bi-geo-alt-fill"></i> <strong>所在地:</strong> 埼玉県</li>
+                    <li><i class="bi bi-heart-fill"></i> <strong>好きな食べ物:</strong> パインバーグディッシュ</li>
                 </ul>
             </div>
         </div>
@@ -69,9 +70,9 @@
                             <strong>OS:</strong> Windows, Ubuntu<br>
                             <strong>Infra:</strong> AWS, Docker<br>
                             <strong>DB:</strong> PostgreSQL, DynamoDB<br>
-                            <strong>Tool:</strong> Git, GitHub, VS Code
+                            <strong>Tool:</strong> Git, GitHub, VS Code<br>
                             <strong>Hardware:</strong> Raspberry Pi, Arduino, PLC (Sequence Control)<br>
-                            <strong>Engineering:</strong> はんだ付け, モータ制御<br>
+                            <strong>Engineering:</strong> はんだ付け, モータ制御
                         </td>
                     </tr>
                     <tr>
@@ -93,20 +94,24 @@
 
             <div class="card-grid">
                 <div class="card">
-                    <h3>Output</h3>
+                    <h3><i class="bi bi-github"></i> Output</h3>
                     <ul class="link-list">
-                        <li><a href="https://257zs17193.github.io/" target="_blank">ポートフォリオ(本ページ)</a></li>
+                        <li>
+                            <a href="https://257zs17193.github.io/" target="_blank">
+                                ポートフォリオ(本ページ) <i class="bi bi-box-arrow-up-right"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="card">
-                    <h3>Products</h3>
+                    <h3><i class="bi bi-code-square"></i> Products</h3>
                     <ul class="link-list">
                         <li>業務改革用　タスク管理ボード</li>
                         <li>業務改革用　CRMツール</li>
-                        <li>全社員の名前、社員番号、所属変換ツール<br>　　(Chrome拡張)</li>
+                        <li>全社員の名前、社員番号、所属変換ツール<br><span class="text-small">(Chrome拡張)</span></li>
                         <li>社員の誕生日通知ツール</li>
-                        <li>エクセルマクロ代表作<br>　　シートの多いブックをきれいに閉じる<br>　　(A1選択、倍率固定)マクロ</li>
+                        <li>エクセルマクロ代表作<br><span class="text-small">シートの多いブックをきれいに閉じる(A1選択、倍率固定)マクロ</span></li>
                     </ul>
                 </div>
             </div>
@@ -120,7 +125,7 @@
                 <table class="btob-table timeline-table">
                     <tr>
                         <th>2025年 4月</th>
-                        <td>学校法人日本財団ドワンゴ学園 <a href="https://zen.ac.jp/">ZEN大学</a> 入学</td>
+                        <td>学校法人日本財団ドワンゴ学園 <a href="https://zen.ac.jp/" target="_blank">ZEN大学 <i class="bi bi-box-arrow-up-right"></i></a> 入学</td>
                     </tr>
                     <tr>
                         <th>2022年 4月~現在</th>
@@ -144,9 +149,45 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2025 My Portfolio.</p>
+            <div class="footer-flex-container">
+                <div class="footer-left">
+                    <button type="button" id="tea-btn" class="footer-icon-btn" aria-label="紅茶">
+                        <i class="bi bi-cup-hot-fill icon-tea"></i>
+                    </button>
+                </div>
+                <p class="footer-center">&copy; 2025 My Portfolio.</p>
+                <div class="footer-right">
+                    <button type="button" id="hamburg-btn" class="btn btn-hamburg">
+                        ハンバーグ
+                    </button>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 紅茶ボタンの処理
+            const teaBtn = document.getElementById('tea-btn');
+            if (teaBtn) {
+                teaBtn.addEventListener('click', function() {
+                    alert('ルピシアの店舗限定紅茶がおすすめです');
+                });
+            }
+
+            // ハンバーグボタンの処理
+            const hamburgBtn = document.getElementById('hamburg-btn');
+            if (hamburgBtn) {
+                hamburgBtn.addEventListener('click', function() {
+                    const result = confirm('今夜の夕飯はハンバーグで決まりですか？');
+                    if (result) {
+                        alert('ぜひびっくりドンキーへ！');
+                    } else {
+                        alert('残念です。');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
