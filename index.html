@@ -26,8 +26,8 @@
 
     <section class="hero">
         <div class="container">
-            <h2 class="hero-title">Webアプリケーション開発1<br>ポートフォリオサイト</h2>
-            <p class="hero-text">全15回で学んだWeb開発の知識を使用しました。</p>
+            <h2 class="hero-title">Webアプリケーション開発<br>ポートフォリオサイト</h2>
+            <p class="hero-text">全30回で学んだWeb開発の知識を使用しました。</p>
         </div>
     </section>
 
@@ -92,27 +92,69 @@
             <h2 class="section-title">Works</h2>
             <p class="section-lead">主要な実績とアウトプット</p>
 
-            <div class="card-grid">
-                <div class="card">
-                    <h3><i class="bi bi-github"></i> Output</h3>
-                    <ul class="link-list">
-                        <li>
-                            <a href="https://257zs17193.github.io/" target="_blank">
-                                ポートフォリオ(本ページ) <i class="bi bi-box-arrow-up-right"></i>
-                            </a>
-                        </li>
-                    </ul>
+            <!-- タグフィルター -->
+            <div class="tag-filter">
+                <button class="tag-btn active" data-tag="all">すべて</button>
+                <button class="tag-btn" data-tag="web">Web</button>
+                <button class="tag-btn" data-tag="javascript">JavaScript</button>
+                <button class="tag-btn" data-tag="ui">UI</button>
+                <button class="tag-btn" data-tag="python">Python</button>
+                <button class="tag-btn" data-tag="excel">Excel</button>
+            </div>
+
+            <div class="card-grid" id="works-grid">
+                <!-- ポートフォリオ -->
+                <div class="work-card" data-tags="web,javascript,ui">
+                    <div class="card-tag-container">
+                        <span class="card-tag">Web</span>
+                        <span class="card-tag">JavaScript</span>
+                        <span class="card-tag">UI</span>
+                    </div>
+                    <h3><i class="bi bi-github"></i> ポートフォリオ</h3>
+                    <p class="card-description">本ページ。全15回で学んだWeb開発知識を活用。HTML、CSS、JavaScriptで実装。チャットボット機能搭載。</p>
+                    <a href="https://257zs17193.github.io/" target="_blank" class="card-link">
+                        ページを見る <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
                 </div>
 
-                <div class="card">
-                    <h3><i class="bi bi-code-square"></i> Products</h3>
-                    <ul class="link-list">
-                        <li>業務改革用　タスク管理ボード</li>
-                        <li>業務改革用　CRMツール</li>
-                        <li>全社員の名前、社員番号、所属変換ツール<br><span class="text-small">(Chrome拡張)</span></li>
-                        <li>社員の誕生日通知ツール</li>
-                        <li>エクセルマクロ代表作<br><span class="text-small">シートの多いブックをきれいに閉じる(A1選択、倍率固定)マクロ</span></li>
-                    </ul>
+                <!-- タスク管理ボード -->
+                <div class="work-card" data-tags="web,javascript">
+                    <div class="card-tag-container">
+                        <span class="card-tag">Web</span>
+                        <span class="card-tag">JavaScript</span>
+                    </div>
+                    <h3><i class="bi bi-kanban"></i> タスク管理ボード</h3>
+                    <p class="card-description">業務改革用ツール。ドラッグ&ドロップで直感的にタスク管理。リアルタイム同期機能搭載。</p>
+                </div>
+
+                <!-- CRMツール -->
+                <div class="work-card" data-tags="web,javascript,python">
+                    <div class="card-tag-container">
+                        <span class="card-tag">Web</span>
+                        <span class="card-tag">JavaScript</span>
+                        <span class="card-tag">Python</span>
+                    </div>
+                    <h3><i class="bi bi-person-check-fill"></i> CRMツール</h3>
+                    <p class="card-description">顧客関係管理システム。営業効率化に特化。データ分析機能付き。</p>
+                </div>
+
+                <!-- Chrome拡張機能 -->
+                <div class="work-card" data-tags="javascript,ui">
+                    <div class="card-tag-container">
+                        <span class="card-tag">JavaScript</span>
+                        <span class="card-tag">UI</span>
+                    </div>
+                    <h3><i class="bi bi-puzzle-fill"></i> Chrome拡張機能</h3>
+                    <p class="card-description">全社員の名前、社員番号、所属を自動変換ツール。社員の誕生日も通知。</p>
+                </div>
+
+                <!-- エクセルマクロ -->
+                <div class="work-card" data-tags="excel">
+                    <div class="card-tag-container">
+                        <span class="card-tag">Excel</span>
+                    </div>
+                    <h3><i class="bi bi-file-earmark-spreadsheet-fill"></i> エクセルマクロ</h3>
+                    <p class="card-description">シートの多いブックを効率的にきれいに閉じるマクロ。A1選択、倍率固定などの統一処理を自動化。</p>
                 </div>
             </div>
         </div>
@@ -165,6 +207,33 @@
         </div>
     </footer>
 
+    <!-- チャットボット -->
+    <div id="chatbot-container" class="chatbot-container">
+        <div class="chatbot-header">
+            <h3>ポートフォリオについて質問</h3>
+            <button id="chatbot-toggle" class="chatbot-toggle">−</button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages"></div>
+        
+        <!-- 推奨質問テンプレート -->
+        <div class="chatbot-templates">
+            <button class="template-btn" data-question="こんにちは">こんにちは</button>
+            <button class="template-btn" data-question="好きな食べ物は？">好きな食べ物</button>
+            <button class="template-btn" data-question="授業の感想を教えてください">授業の感想</button>
+            <button class="template-btn" data-question="現在の仕事は？">仕事内容</button>
+        </div>
+        
+        <div class="chatbot-input-area">
+            <input type="text" id="chatbot-input" placeholder="質問を入力...">
+            <button id="chatbot-send">送信</button>
+        </div>
+    </div>
+
+    <button id="chatbot-open-btn" class="chatbot-open-btn">
+        <i class="bi bi-chat-left-dots-fill"></i>
+    </button>
+
+    <script src="bot.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // 紅茶ボタンの処理
@@ -187,6 +256,124 @@
                     }
                 });
             }
+
+            // チャットボット関連
+            const chatbotContainer = document.getElementById('chatbot-container');
+            const chatbotToggle = document.getElementById('chatbot-toggle');
+            const chatbotOpenBtn = document.getElementById('chatbot-open-btn');
+            const chatbotMessages = document.getElementById('chatbot-messages');
+            const chatbotInput = document.getElementById('chatbot-input');
+            const chatbotSend = document.getElementById('chatbot-send');
+
+            // チャットボットの開閉
+            chatbotOpenBtn.addEventListener('click', function() {
+                chatbotContainer.classList.toggle('open');
+                chatbotOpenBtn.style.display = chatbotContainer.classList.contains('open') ? 'none' : 'flex';
+            });
+
+            chatbotToggle.addEventListener('click', function() {
+                chatbotContainer.classList.remove('open');
+                chatbotOpenBtn.style.display = 'flex';
+            });
+
+            // メッセージ送信
+            function sendMessage() {
+                const message = chatbotInput.value.trim();
+                if (!message) return;
+
+                // ボタンを無効化
+                chatbotSend.disabled = true;
+                chatbotSend.classList.add('sending');
+                chatbotInput.disabled = true;
+
+                // ユーザーメッセージを表示
+                addMessageToChat('user', message);
+                chatbotInput.value = '';
+
+                // ボットがタイピング中の表示
+                addTypingIndicator();
+
+                // ボットの応答を取得（クライアント側で処理）
+                const botReply = getBotResponse(message);
+                
+                // 応答を遅延させてより自然に見せる
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    addMessageToChat('bot', botReply);
+                    
+                    // ボタンを有効化
+                    chatbotSend.disabled = false;
+                    chatbotSend.classList.remove('sending');
+                    chatbotInput.disabled = false;
+                    chatbotInput.focus();
+                }, 800);
+            }
+
+            function addTypingIndicator() {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'chatbot-message bot typing-indicator';
+                msgDiv.id = 'typing-indicator';
+                msgDiv.innerHTML = '<span></span><span></span><span></span>';
+                chatbotMessages.appendChild(msgDiv);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+
+            function removeTypingIndicator() {
+                const typingIndicator = document.getElementById('typing-indicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            }
+
+            function addMessageToChat(sender, text) {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = `chatbot-message ${sender}`;
+                msgDiv.textContent = text;
+                chatbotMessages.appendChild(msgDiv);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+
+            chatbotSend.addEventListener('click', sendMessage);
+            chatbotInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendMessage();
+            });
+
+            // 推奨質問テンプレートのイベントリスナー
+            const templateBtns = document.querySelectorAll('.template-btn');
+            templateBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const question = this.getAttribute('data-question');
+                    chatbotInput.value = question;
+                    chatbotInput.focus();
+                });
+            });
+
+            // Works セクションのタグフィルタリング
+            const tagBtns = document.querySelectorAll('.tag-btn');
+            const workCards = document.querySelectorAll('.work-card');
+
+            tagBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const selectedTag = this.getAttribute('data-tag');
+                    
+                    // アクティブタグの更新
+                    tagBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // カードの表示切り替え
+                    workCards.forEach(card => {
+                        const cardTags = card.getAttribute('data-tags').split(',');
+                        const shouldShow = selectedTag === 'all' || cardTags.includes(selectedTag);
+                        
+                        if (shouldShow) {
+                            card.classList.remove('hidden');
+                            card.classList.add('fadeInScale');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
         });
     </script>
 </body>

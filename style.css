@@ -210,6 +210,125 @@ ul {
   align-items: center;
 }
 
+/* Works セクションの新しいカードスタイル */
+.tag-filter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.tag-btn {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  color: #666;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-family: var(--font-base);
+}
+
+.tag-btn:hover {
+  background-color: #e8e8e8;
+  transform: translateY(-2px);
+}
+
+.tag-btn.active {
+  background-color: var(--theme-color);
+  color: #fff;
+  border-color: var(--theme-color);
+}
+
+/* Work カード */
+.work-card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.4s;
+  animation: fadeInScale 0.4s ease-out;
+}
+
+.work-card.hidden {
+  display: none;
+  animation: none;
+}
+
+.work-card.fadeInScale {
+  animation: fadeInScale 0.4s ease-out;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.work-card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+}
+
+.card-tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.card-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background-color: #e8f4f8;
+  color: var(--theme-color);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.work-card h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  border: none;
+  padding: 0;
+  display: block;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background-color: var(--theme-color);
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.card-link:hover {
+  background-color: var(--theme-dark);
+  color: #fff;
+}
+
 /* テーブル (BtoBスタイル) */
 .table-responsive {
   overflow-x: auto;
@@ -317,7 +436,235 @@ ul {
   color: #e6c0a0;
 }
 
-/* レスポンシブ調整 */
+/* =========================================
+   チャットボット関連のスタイル
+========================================= */
+.chatbot-open-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--theme-color);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+  z-index: 999;
+  animation: chatbotPulse 2s infinite;
+}
+
+/* チャットボタンのパルスアニメーション */
+@keyframes chatbotPulse {
+  0%, 100% {
+    transform: scale(1);
+    background-color: var(--theme-color);
+  }
+  50% {
+    transform: scale(1.05);
+    background-color: #e74c3c;
+  }
+}
+
+.chatbot-open-btn:hover {
+  animation: none;
+  transform: scale(1.1);
+}
+
+.chatbot-container {
+  position: fixed;
+  bottom: -400px;
+  right: 20px;
+  width: 350px;
+  height: 400px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 40px rgba(0,0,0,0.16);
+  display: flex;
+  flex-direction: column;
+  transition: bottom 0.3s;
+  z-index: 1000;
+}
+
+.chatbot-container.open {
+  bottom: 80px;
+}
+
+.chatbot-container.open ~ .chatbot-open-btn {
+  display: none;
+}
+
+.chatbot-header {
+  background-color: var(--theme-color);
+  color: #fff;
+  padding: 15px;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatbot-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.chatbot-toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.chatbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+.chatbot-message {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.chatbot-message.user {
+  background-color: var(--theme-color);
+  color: #fff;
+  margin-left: auto;
+  text-align: right;
+}
+
+.chatbot-message.bot {
+  background-color: #e8e8e8;
+  color: #333;
+}
+
+.chatbot-input-area {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.chatbot-input-area input {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  font-family: var(--font-base);
+}
+
+.chatbot-input-area button {
+  padding: 8px 15px;
+  background-color: var(--theme-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+
+.chatbot-input-area button:hover:not(:disabled) {
+  background-color: var(--theme-dark);
+}
+
+/* 送信ボタンが送信中の状態 */
+.chatbot-input-area button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.chatbot-input-area button.sending {
+  animation: buttonPulse 0.6s ease-in-out;
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+}
+
+/* 推奨質問テンプレート */
+.chatbot-templates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 12px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #fafafa;
+}
+
+.template-btn {
+  padding: 6px 12px;
+  background-color: #e8f4f8;
+  color: var(--theme-color);
+  border: 1px solid var(--theme-color);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  font-family: var(--font-base);
+}
+
+.template-btn:hover {
+  background-color: var(--theme-color);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* タイピングインジケーター */
+.typing-indicator {
+  display: flex !important;
+  align-items: center;
+  gap: 4px;
+  width: auto !important;
+  max-width: 60px !important;
+}
+
+.typing-indicator span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #999;
+  animation: typing 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+}
+
 @media (max-width: 768px) {
   .header-inner {
     flex-direction: column;
@@ -344,5 +691,10 @@ ul {
   }
   .btob-table td {
     padding-top: 5px;
+  }
+  .chatbot-container {
+    width: 90%;
+    height: 350px;
+    right: 5%;
   }
 }
