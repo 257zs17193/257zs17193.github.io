@@ -16,6 +16,7 @@ block content
       .posts-form-container
         h3 投稿を作成
         form.posts-form(method="post" action="/posts")
+          input(type="hidden" name="oneTimeToken" value=oneTimeToken)
           .form-group
             label(for="content") メッセージ
             textarea#content.form-control(name="content" rows="4" placeholder="投稿内容を入力..." maxlength="1000" required)
