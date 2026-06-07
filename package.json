@@ -1,0 +1,30 @@
+{
+  "name": "portfolio-chat-service",
+  "version": "1.0.0",
+  "description": "Portfolio with server-side chat functionality",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio"
+  },
+  "keywords": [
+    "portfolio",
+    "chat",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cookies": "^0.9.1",
+    "dotenv": "^16.4.5",
+    "http-auth": "^4.2.1",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    
+  }
+}

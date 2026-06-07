@@ -1,0 +1,259 @@
+extends layout
+
+block content
+  section.section
+    .container
+      h2.section-title Chat Service
+      p.section-lead ユーザー同士が投稿を共有できるチャットサービス
+
+      .auth-status
+        p.auth-info
+          strong ログイン中:
+          |  #{user}
+          a.logout-link(href="/logout") [ログアウト]
+
+      // 投稿フォーム
+      .posts-form-container
+        h3 投稿を作成
+        form.posts-form(method="post" action="/posts")
+          .form-group
+            label(for="content") メッセージ
+            textarea#content.form-control(name="content" rows="4" placeholder="投稿内容を入力..." maxlength="1000" required)
+              
+          .form-group
+            button.btn.btn-primary(type="submit") 投稿する
+
+          if lastPostTime
+            .last-post-info
+              i.bi.bi-clock-history
+              |  最後の投稿: #{lastPostTime}
+
+      // 投稿一覧
+      .posts-list-container
+        h3 
+          | 投稿一覧
+          span.posts-count (#{posts.length}件)
+
+        if posts.length === 0
+          .no-posts
+            p まだ投稿がありません。最初の投稿をしてみてください！
+        else
+          ul.posts-list
+            each post in posts
+              li.post-item
+                .post-header
+                  .post-meta
+                    span.post-author #{post.postedBy}
+                    span.post-date #{new Date(post.createdAt).toLocaleString('ja-JP')}
+                  
+                  - var isDeletable = user === post.postedBy || user === 'admin'
+                  if isDeletable
+                    form.delete-form(method="post" action="/posts/" + post.id + "/delete")
+                      button.btn-delete(type="submit" title="削除する")
+                        i.bi.bi-trash3-fill
+
+                .post-content #{post.content}
+
+  style.
+    .auth-status {
+      padding: 1rem;
+      background-color: var(--bg-gray);
+      border-radius: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .auth-info {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logout-link {
+      margin-left: 1rem;
+      color: var(--link-color);
+      text-decoration: none;
+    }
+
+    .logout-link:hover {
+      text-decoration: underline;
+    }
+
+    .posts-form-container {
+      background-color: var(--card-bg);
+      padding: 2rem;
+      border-radius: 0.75rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .posts-form-container h3 {
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 0.375rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1rem;
+      resize: vertical;
+      background-color: var(--body-bg);
+      color: var(--text-color);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--theme-color);
+      box-shadow: 0 0 0 3px rgba(0, 160, 160, 0.1);
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background-color: var(--theme-color);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--theme-dark);
+    }
+
+    .last-post-info {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      color: var(--text-color);
+    }
+
+    .posts-list-container {
+      margin-top: 2rem;
+    }
+
+    .posts-list-container h3 {
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+    }
+
+    .posts-count {
+      font-size: 0.875rem;
+      color: var(--text-color);
+      margin-left: 0.5rem;
+    }
+
+    .no-posts {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-color);
+      background-color: var(--bg-gray);
+      border-radius: 0.5rem;
+    }
+
+    .posts-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .post-item {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.2s;
+      color: var(--text-color);
+    }
+
+    .post-item:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.75rem;
+    }
+
+    .post-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.875rem;
+      color: var(--text-color);
+    }
+
+    .post-author {
+      font-weight: 600;
+      color: var(--theme-color);
+    }
+
+    .post-date {
+      color: var(--text-color);
+    }
+
+    .delete-form {
+      margin: 0;
+    }
+
+    .btn-delete {
+      background: none;
+      border: none;
+      color: #dc3545;
+      cursor: pointer;
+      font-size: 1.25rem;
+      padding: 0.25rem 0.5rem;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .btn-delete:hover {
+      color: #c82333;
+      transform: scale(1.2);
+    }
+
+    .post-content {
+      color: #333;
+      line-height: 1.6;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+    @media (max-width: 768px) {
+      .post-header {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .posts-form-container {
+        padding: 1.5rem;
+      }
+    }

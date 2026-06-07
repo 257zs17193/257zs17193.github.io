@@ -12,7 +12,7 @@
   --link-hover: #005f5f;
   --font-base: 'Noto Sans JP', sans-serif;
   /* ハンバーグボタン用の色変数を追加 */
-  --hamburg-color: #8b4513; 
+  --hamburg-color: #8b4513;
   --hamburg-hover: #a0522d;
 }
 
@@ -97,7 +97,7 @@ ul {
 /* ヘッダー */
 .site-header {
   background: var(--header-bg);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
   z-index: 100;

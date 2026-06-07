@@ -1,0 +1,322 @@
+extends layout
+
+block content
+  section.hero
+    .container
+      h2.hero-title Webアプリケーション開発
+        br
+        | ポートフォリオサイト
+      p.hero-text 全30回で学んだWeb開発の知識を使用しました。
+
+  section#about.section
+    .container
+      h2.section-title About
+      p.section-lead
+        | 2-38クラス所属　社会人学生です。
+        br
+        | 仕事でIT系の業務に携わっています。
+      
+      .profile-card
+        h3
+          i.bi.bi-person-badge
+          |  Profile
+        ul.simple-list
+          li
+            i.bi.bi-geo-alt-fill
+            |  
+            strong 所在地:
+            |  埼玉県
+          li
+            i.bi.bi-heart-fill
+            |  
+            strong 好きな食べ物:
+            |  パインバーグディッシュ
+
+  section#skills.section.section-gray
+    .container
+      h2.section-title Skills & Environment
+      p.section-lead 保有する技術スタック
+      
+      .table-responsive
+        table.btob-table
+          tr
+            th Languages
+            td C/C++, C#, JavaScript, TypeScript, Python, VBA (Excel), HTML, CSS
+          tr
+            th Frameworks & Libraries
+            td Node.js, Next.js, React, Tailwind CSS
+          tr
+            th Environment & Tools
+            td
+              strong OS:
+              |  Windows, Ubuntu
+              br
+              strong Infra:
+              |  AWS, Docker
+              br
+              strong DB:
+              |  PostgreSQL, DynamoDB
+              br
+              strong Tool:
+              |  Git, GitHub, VS Code
+              br
+              strong Hardware:
+              |  Raspberry Pi, Arduino, PLC (Sequence Control)
+              br
+              strong Engineering:
+              |  はんだ付け, モータ制御
+          tr
+            th 資格・免許
+            td
+              | JDLA Deep Learning for GENERAL (G検定)
+              br
+              | 普通自動車第一種運転免許
+
+  section#works.section
+    .container
+      h2.section-title Works
+      p.section-lead 主要な実績とアウトプット
+
+      .tag-filter
+        button.tag-btn.active(data-tag="all") すべて
+        button.tag-btn(data-tag="web") Web
+        button.tag-btn(data-tag="javascript") JavaScript
+        button.tag-btn(data-tag="ui") UI
+        button.tag-btn(data-tag="python") Python
+        button.tag-btn(data-tag="excel") Excel
+
+      #works-grid.card-grid
+        .work-card(data-tags="web,javascript,ui")
+          .card-tag-container
+            span.card-tag Web
+            span.card-tag JavaScript
+            span.card-tag UI
+          h3
+            i.bi.bi-github
+            |  ポートフォリオ
+          p.card-description 本ページ。全15回で学んだWeb開発知識を活用。HTML、CSS、JavaScriptで実装。チャットボット機能搭載。
+          a.card-link(href="https://257zs17193.github.io/" target="_blank")
+            | ページを見る 
+            i.bi.bi-box-arrow-up-right
+
+        .work-card(data-tags="web,javascript")
+          .card-tag-container
+            span.card-tag Web
+            span.card-tag JavaScript
+          h3
+            i.bi.bi-kanban
+            |  タスク管理ボード
+          p.card-description 業務改革用ツール。ドラッグ&ドロップで直感的にタスク管理。リアルタイム同期機能搭載。
+
+        .work-card(data-tags="web,javascript,python")
+          .card-tag-container
+            span.card-tag Web
+            span.card-tag JavaScript
+            span.card-tag Python
+          h3
+            i.bi.bi-person-check-fill
+            |  CRMツール
+          p.card-description 顧客関係管理システム。営業効率化に特化。データ分析機能付き。
+
+        .work-card(data-tags="javascript,ui")
+          .card-tag-container
+            span.card-tag JavaScript
+            span.card-tag UI
+          h3
+            i.bi.bi-puzzle-fill
+            |  Chrome拡張機能
+          p.card-description 全社員の名前、社員番号、所属を自動変換ツール。社員の誕生日も通知。
+
+        .work-card(data-tags="excel")
+          .card-tag-container
+            span.card-tag Excel
+          h3
+            i.bi.bi-file-earmark-spreadsheet-fill
+            |  エクセルマクロ
+          p.card-description シートの多いブックを効率的にきれいに閉じるマクロ。A1選択、倍率固定などの統一処理を自動化。
+
+  section#history.section.section-gray
+    .container
+      h2.section-title History
+      .table-responsive
+        table.btob-table.timeline-table
+          tr
+            th 2025年 4月
+            td
+              | 学校法人日本財団ドワンゴ学園 
+              a(href="https://zen.ac.jp/" target="_blank") ZEN大学 
+              i.bi.bi-box-arrow-up-right
+              |  入学
+          tr
+            th 2022年 4月~現在
+            td
+              strong IT関連業務に従事
+              br
+              span.text-small 企画、設計～開発～保守を行う。自社製品に加え、新製品開発・受託業務も行う。
+          tr
+            th 2017年 4月~2022年 3月
+            td
+              strong 高等専門学校　在学
+              br
+              span.text-small ・電気電子系、経営を学ぶ
+              br
+              span.text-small ・部活動(少林寺拳法部、ボランティア同好会など)では部長をつとめる
+              br
+              span.text-small ・経営系のコンテストで審査員賞など受賞
+
+  section#contact.section
+    .container
+      h2.section-title Contact
+      p.section-lead ご相談・お問い合わせはこちらから
+      .contact-card
+        button#contact-link.btn.btn-primary(type="button") 連絡先を表示
+
+  script.
+    document.addEventListener('DOMContentLoaded', function() {
+      // 紅茶ボタンの処理
+      const teaBtn = document.getElementById('tea-btn');
+      if (teaBtn) {
+        teaBtn.addEventListener('click', function() {
+          alert('ルピシアの店舗限定紅茶がおすすめです');
+        });
+      }
+
+      // ハンバーグボタンの処理
+      const hamburgBtn = document.getElementById('hamburg-btn');
+      if (hamburgBtn) {
+        hamburgBtn.addEventListener('click', function() {
+          const result = confirm('今夜の夕飯はハンバーグで決まりですか？');
+          if (result) {
+            alert('ぜひびっくりドンキーへ！');
+          } else {
+            alert('残念です。');
+          }
+        });
+      }
+
+      // Contactボタンの処理
+      const contactLink = document.getElementById('contact-link');
+      if (contactLink) {
+        contactLink.addEventListener('click', function() {
+          alert('連絡先メールアドレス:257zs17193@student.zen.ac.jp ');
+        });
+      }
+
+      // チャットボット関連
+      const chatbotContainer = document.getElementById('chatbot-container');
+      const chatbotToggle = document.getElementById('chatbot-toggle');
+      const chatbotOpenBtn = document.getElementById('chatbot-open-btn');
+      const chatbotMessages = document.getElementById('chatbot-messages');
+      const chatbotInput = document.getElementById('chatbot-input');
+      const chatbotSend = document.getElementById('chatbot-send');
+
+      // チャットボットの開閉
+      chatbotOpenBtn.addEventListener('click', function() {
+        chatbotContainer.classList.toggle('open');
+        chatbotOpenBtn.style.display = chatbotContainer.classList.contains('open') ? 'none' : 'flex';
+      });
+
+      chatbotToggle.addEventListener('click', function() {
+        chatbotContainer.classList.remove('open');
+        chatbotOpenBtn.style.display = 'flex';
+      });
+
+      // メッセージ送信
+      function sendMessage() {
+        const message = chatbotInput.value.trim();
+        if (!message) return;
+
+        // ボタンを無効化
+        chatbotSend.disabled = true;
+        chatbotSend.classList.add('sending');
+        chatbotInput.disabled = true;
+
+        // ユーザーメッセージを表示
+        addMessageToChat('user', message);
+        chatbotInput.value = '';
+
+        // ボットがタイピング中の表示
+        addTypingIndicator();
+
+        // ボットの応答を取得（クライアント側で処理）
+        const botReply = getBotResponse(message);
+        
+        // 応答を遅延させてより自然に見せる
+        setTimeout(() => {
+          removeTypingIndicator();
+          addMessageToChat('bot', botReply);
+          
+          // ボタンを有効化
+          chatbotSend.disabled = false;
+          chatbotSend.classList.remove('sending');
+          chatbotInput.disabled = false;
+          chatbotInput.focus();
+        }, 800);
+      }
+
+      function addTypingIndicator() {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'chatbot-message bot typing-indicator';
+        msgDiv.id = 'typing-indicator';
+        msgDiv.innerHTML = '<span></span><span></span><span></span>';
+        chatbotMessages.appendChild(msgDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      }
+
+      function removeTypingIndicator() {
+        const typingIndicator = document.getElementById('typing-indicator');
+        if (typingIndicator) {
+          typingIndicator.remove();
+        }
+      }
+
+      function addMessageToChat(sender, text) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `chatbot-message ${sender}`;
+        msgDiv.textContent = text;
+        chatbotMessages.appendChild(msgDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      }
+
+      chatbotSend.addEventListener('click', sendMessage);
+      chatbotInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+      });
+
+      // 推奨質問テンプレートのイベントリスナー
+      const templateBtns = document.querySelectorAll('.template-btn');
+      templateBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const question = this.getAttribute('data-question');
+          chatbotInput.value = question;
+          chatbotInput.focus();
+        });
+      });
+
+      // Works セクションのタグフィルタリング
+      const tagBtns = document.querySelectorAll('.tag-btn');
+      const workCards = document.querySelectorAll('.work-card');
+
+      tagBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const selectedTag = this.getAttribute('data-tag');
+          
+          // アクティブタグの更新
+          tagBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+
+          // カードの表示切り替え
+          workCards.forEach(card => {
+            const cardTags = card.getAttribute('data-tags').split(',');
+            const shouldShow = selectedTag === 'all' || cardTags.includes(selectedTag);
+            
+            if (shouldShow) {
+              card.classList.remove('hidden');
+              card.classList.add('fadeInScale');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+    });
