@@ -12,7 +12,7 @@ import { router } from './lib/router.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // 環境変数
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 const DB_URL = process.env.DATABASE_URL;
 
 // デバッグログ
@@ -28,18 +28,15 @@ function loadUsers() {
   const htpasswdPath = path.join(process.cwd(), '.htpasswd');
   const content = fs.readFileSync(htpasswdPath, 'utf-8');
   const users = {};
-  
+
   content.split('\n').forEach(line => {
-    const trimmed = line.trim();
-    if (!trimmed) return; // 空行スキップ
-    
-    const [username, password] = trimmed.split(':');
+    const [username, password] = line.trim().split(':');
     if (username && password) {
       users[username] = password;
       console.log(`[Init] Loaded user: ${username}`);
     }
   });
-  
+
   console.log(`[Init] Total users loaded: ${Object.keys(users).length}`);
   return users;
 }
