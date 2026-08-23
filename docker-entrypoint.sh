@@ -19,4 +19,24 @@ else
   echo "[entrypoint] No BASIC_AUTH_USERS or HTPASSWD_BASE64 provided; skipping .htpasswd creation"
 fi
 
+# If .env is expected by the start command, create it from runtime env vars when missing
+ENV_FILE=/app/.env
+if [ ! -f "${ENV_FILE}" ]; then
+  echo "[entrypoint] .env not found, creating from available environment variables"
+  touch "${ENV_FILE}"
+  # List of environment vars to export into .env if present
+  for key in DATABASE_URL NODE_ENV PORT GITHUB_CLIENT_ID GITHUB_CLIENT_SECRET SESSION_PASSWORD BASIC_AUTH_USERS; do
+    val=$(printenv "$key")
+    if [ -n "$val" ]; then
+      # Escape any literal $ in values
+      safe=$(printf '%s' "$val" | sed 's/\$/\\$/g')
+      echo "$key=$safe" >> "${ENV_FILE}"
+    fi
+  done
+  chmod 600 "${ENV_FILE}"
+  echo "[entrypoint] .env created (/app/.env)"
+else
+  echo "[entrypoint] .env already exists; leaving it intact"
+fi
+
 exec "$@"
