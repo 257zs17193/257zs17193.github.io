@@ -1,18 +1,11 @@
-FROM node:20-slim
+FROM node:22.12.0
 
+RUN apt-get update && apt-get install -y \
+  git \
+  locales \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* \
+  && localedef -i ja_JP -c -f UTF-8 -A /usr/share/locale/locale.alias ja_JP.UTF-8
+
+ENV LANG ja_JP.UTF-8
 WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm install
-
-RUN apt-get update -y \
-	&& rm -rf /var/lib/apt/lists/*
-
-COPY . .
-
- 
-
-EXPOSE 3000
-
-CMD ["npm", "start"]

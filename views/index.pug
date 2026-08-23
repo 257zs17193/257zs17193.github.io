@@ -88,6 +88,30 @@ block content
         button.tag-btn(data-tag="excel") Excel
 
       #works-grid.card-grid
+        .work-card(data-tags="web,javascript")
+          .card-tag-container
+            span.card-tag Web
+            span.card-tag JavaScript
+          h3
+            i.bi.bi-controller
+            |  オンライン潜水艦ゲーム
+          p.card-description 第16回で学んだWebSocketを使ったリアルタイムマルチプレイヤーゲーム。Hono + Socket.IO + Canvas描画で実装。
+          a.card-link(href="/submarine-online" target="_blank")
+            | プレイする 
+            i.bi.bi-box-arrow-up-right
+
+        .work-card(data-tags="web,javascript")
+          .card-tag-container
+            span.card-tag Web
+            span.card-tag JavaScript
+          h3
+            i.bi.bi-book
+            |  Guestbook（訪問者コメント）
+          p.card-description Hono + Prisma + PostgreSQLで実装した掲示板機能。GitHub認証、CRUD操作、Bootstrapでレスポンシブ対応。
+          a.card-link(href="/guestbook" target="_blank")
+            | コメントを見る 
+            i.bi.bi-box-arrow-up-right
+
         .work-card(data-tags="web,javascript,ui")
           .card-tag-container
             span.card-tag Web

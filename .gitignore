@@ -14,5 +14,11 @@ yarn-error.log*
 *.swp
 *.swo
 prisma/.migrate_lock
+prisma/migrations/
 .next/
 out/
+public/bundle.js
+public/bundle.css
+db/
+logs/
+package-lock.json
